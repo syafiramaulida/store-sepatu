@@ -1,0 +1,373 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #000000 0%, #555555ff 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+header h1 {
+    color: #000000;
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+/* Product Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+/* Product Card */
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 1.2em;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: #000000;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-name {
+    font-size: 1.3em;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 1.5em;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-clamp: 2;
+    box-orient: vertical;
+}
+
+
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.detail-item {
+    text-align: center;
+}
+
+.detail-label {
+    font-size: 0.85em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-weight: 600;
+    color: #333;
+}
+
+.stok-badge {
+    background: #28a745;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.9em;
+}
+
+.stok-badge.low {
+    background: #ffc107;
+}
+
+.stok-badge.out {
+    background: #dc3545;
+}
+
+.btn-detail {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #000000 0%, #555555ff 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.btn-detail:hover {
+    transform: scale(1.02);
+    opacity: 0.9;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.3s ease;
+    overflow-y: auto; /* ✅ ini yang bikin modal bisa discroll */
+    padding: 40px 0; /* beri ruang agar modal tidak mentok layar */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background-color: white;
+    margin: auto;
+    padding: 0;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+    overflow-y: auto; /* ✅ agar isi modal-nya bisa discroll juga */
+    max-height: 90vh; /* ✅ batasi tinggi maksimum modal */
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #000000 0%, #555555ff 100%);
+    color: white;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+.close {
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    line-height: 1;
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+.modal-body {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.modal-image {
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 1.2em;
+}
+
+.modal-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.modal-info h3 {
+    color: #667eea;
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.modal-price {
+    font-size: 2.2em;
+    color: #000000;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.modal-description {
+    color: #666;
+    line-height: 1.8;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+.modal-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.modal-detail-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-detail-label {
+    font-size: 0.9em;
+    color: #999;
+    margin-bottom: 5px;
+}
+
+.modal-detail-value {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Loading */
+.loading {
+    text-align: center;
+    padding: 50px;
+    color: white;
+    font-size: 1.5em;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    header h1 {
+        font-size: 2em;
+    }
+    
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    body {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 1.6em;
+    }
+}
